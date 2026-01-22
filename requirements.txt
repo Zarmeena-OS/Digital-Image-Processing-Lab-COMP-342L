@@ -2,8 +2,11 @@
 # Add your required packages here
 
 # Common image processing libraries
-# numpy>=1.21.0
-# opencv-python>=4.5.0
-# matplotlib>=3.4.0
-# pillow>=8.3.0
-# scipy>=1.7.0
+numpy>=2.4.1
+opencv-python>=4.13.0
+scikit-learn>=1.8.0
+scipy>=1.17.0
+joblib>=1.5.3
+threadpoolctl>=3.6.0
+matplotlib>=3.10.8
+pillow>=12.1.0
