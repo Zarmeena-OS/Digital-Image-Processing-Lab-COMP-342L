@@ -1,9 +1,10 @@
 from PIL import Image
 import numpy as np
 import os
+import matplotlib.pyplot as plt
 
 # Image path relative to this script
-image_path = 'Content/download.jpeg'
+image_path = "Content/download.jpeg"
 
 if not os.path.exists(image_path):
     print(f"Error: Image file '{image_path}' not found!")
@@ -11,6 +12,13 @@ if not os.path.exists(image_path):
 else:
     image = Image.open(image_path)
     image_array = np.array(image)
-    
+
     print(f"Image Shape: {image_array.shape}")
     print("Image opened successfully")
+
+    # Display the image
+    plt.figure(figsize=(10, 6))
+    plt.imshow(image_array)
+    plt.axis("off")  # Hide axes
+    plt.title("Image Display")
+    plt.show()
