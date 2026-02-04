@@ -1,0 +1,8 @@
+# Relaxed requirements for Python 3.9 (e.g. existing venv)
+# Use: pip install -r requirements-py39.txt
+numpy>=1.21,<2
+opencv-python>=4.5
+scikit-image>=0.19
+scipy>=1.7
+matplotlib>=3.4
+pillow>=9.0
