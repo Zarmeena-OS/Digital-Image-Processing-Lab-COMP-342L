@@ -1,7 +1,18 @@
-# Lab 6
+# Lab 6 — Multi-scale Retinex (MSR)
 
-## Description
-Lab 6 exercises and implementations for Digital Image Processing.
+MSR = weighted sum of SSR at multiple scales (σ=15, 80, 250).
+
+## Run
+
+```bash
+cd "Lab 6"
+python msr.py
+```
+
+## Output
+
+- **`Lab 6/Lab6_msr.png`** — Original | MSR.
 
 ## Files
-- Add your lab 6 files here
+
+- `msr.py` — main script; `Content/` — optional images.

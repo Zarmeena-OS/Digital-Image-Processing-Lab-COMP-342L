@@ -1,0 +1,164 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\title{Problem Statement and Full Implementation Report\\
+\large Digital Image Processing (COMP-342L) --- All 12 Labs}
+\author{[Your Name]}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document states the problem addressed by the course project and summarizes the full implementation across all 12 labs. The project focuses on \textbf{low-light and uneven illumination image enhancement} using classical methods (histogram-based, Retinex-based, gamma/log transforms, denoising, and color preservation). Labs 3--12 implement a complete pipeline from contrast baseline to evaluation and paper draft.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%=============================================================================
+\section{Problem Statement}
+%=============================================================================
+
+\subsection{Topic}
+Low-light and uneven illumination image enhancement using classical and (optionally) hybrid pipelines.
+
+\subsection{Objective}
+Design, implement, and evaluate a practical image enhancement pipeline for low-light and unevenly lit images. Compare classical methods in terms of:
+\begin{itemize}
+  \item Contrast improvement
+  \item Noise behavior
+  \item Color fidelity
+\end{itemize}
+Establish a baseline and optional extensions (e.g., denoising + enhancement, simple learning-based module) so that the full pipeline can be written up as a short research paper by Lab 12.
+
+\subsection{Deliverables}
+\begin{itemize}
+  \item Code and figures for Labs 3--11.
+  \item Short paper (4--6 pages): introduction, related work, method, experiments, discussion, conclusion (Lab 12).
+\end{itemize}
+
+%=============================================================================
+\section{Repository and Environment}
+%=============================================================================
+
+\subsection{Structure}
+\begin{itemize}
+  \item \texttt{Lab 1/}--\texttt{Lab 12/}: Per-lab code and README.
+  \item \texttt{requirements.txt} (Python 3.10+), \texttt{requirements-py39.txt} (Python 3.9).
+  \item \texttt{problem\_statement.tex}: This document.
+\end{itemize}
+
+\subsection{Setup}
+\begin{verbatim}
+python -m venv venv
+source venv/bin/activate   # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+\end{verbatim}
+
+%=============================================================================
+\section{Lab-by-Lab Implementation (All 12 Labs)}
+%=============================================================================
+
+\subsection{Lab 1}
+Placeholder; no implementation required for the research pipeline.
+
+\subsection{Lab 2 --- Image I/O and RGB Channels}
+\textbf{Purpose:} Load images and display RGB channels.\\
+\textbf{Files:} \texttt{Lab 2/Ali Hamza's Lab/Part 1.py}, \texttt{Part 2.py}; Zarmeena's Lab equivalents.\\
+\textbf{Run:} \texttt{cd "Lab 2/Ali Hamza's Lab"; python Part 1.py} (or \texttt{Part 2.py}).
+
+\subsection{Lab 3 --- Contrast Baseline (Global HE vs CLAHE)}
+\textbf{Purpose:} First block of the enhancement pipeline; compare global histogram equalization with Contrast Limited Adaptive Histogram Equalization (CLAHE) on grayscale images.\\
+\textbf{Files:} \texttt{Lab 3/clahe\_vs\_he.py}, \texttt{Lab 3/Content/}.\\
+\textbf{Output:} \texttt{Lab3\_comparison.png} (original | global HE | CLAHE).\\
+\textbf{Run:} \texttt{cd "Lab 3"; python clahe\_vs\_he.py}.\\
+\textbf{Research angle:} Global HE often over-enhances noise; CLAHE limits contrast gain and preserves local detail (cite F1000Research 2021, MDPI Algorithms 2024).
+
+\subsection{Lab 4 --- Gamma and Log Transforms}
+\textbf{Purpose:} Power-law (gamma) and log transforms for tone mapping; compare with Lab 3.\\
+\textbf{Files:} \texttt{Lab 4/gamma\_log\_transforms.py}.\\
+\textbf{Output:} \texttt{Lab4\_gamma\_log.png} (original | gamma=0.5 | gamma=1.5 | log).\\
+\textbf{Run:} \texttt{cd "Lab 4"; python gamma\_log\_transforms.py}.
+
+\subsection{Lab 5 --- Single-Scale Retinex (SSR)}
+\textbf{Purpose:} Illumination--reflectance decomposition: $R = \log(I) - \log(G*I)$ with Gaussian $G$.\\
+\textbf{Files:} \texttt{Lab 5/ssr.py}.\\
+\textbf{Output:} \texttt{Lab5\_ssr.png} (original | SSR $\sigma=15$ | SSR $\sigma=80$).\\
+\textbf{Run:} \texttt{cd "Lab 5"; python ssr.py}.
+
+\subsection{Lab 6 --- Multi-Scale Retinex (MSR)}
+\textbf{Purpose:} MSR = weighted sum of SSR at multiple scales ($\sigma = 15, 80, 250$).\\
+\textbf{Files:} \texttt{Lab 6/msr.py}.\\
+\textbf{Output:} \texttt{Lab6\_msr.png} (original | MSR).\\
+\textbf{Run:} \texttt{cd "Lab 6"; python msr.py}.
+
+\subsection{Lab 7 --- Color Preservation (CLAHE on V in HSV)}
+\textbf{Purpose:} Apply CLAHE only to the V (value) channel in HSV; H and S unchanged to avoid color shift.\\
+\textbf{Files:} \texttt{Lab 7/color\_preservation.py}.\\
+\textbf{Output:} \texttt{Lab7\_color\_preserved.png} (original RGB | enhanced, color preserved).\\
+\textbf{Run:} \texttt{cd "Lab 7"; python color\_preservation.py}.
+
+\subsection{Lab 8 --- Denoising + Enhancement Pipeline}
+\textbf{Purpose:} Bilateral filter (edge-preserving denoising) followed by CLAHE.\\
+\textbf{Files:} \texttt{Lab 8/denoise\_enhance.py}.\\
+\textbf{Output:} \texttt{Lab8\_denoise\_enhance.png} (original | bilateral | bilateral+CLAHE).\\
+\textbf{Run:} \texttt{cd "Lab 8"; python denoise\_enhance.py}.
+
+\subsection{Lab 9 --- Objective Metrics (PSNR, SSIM)}
+\textbf{Purpose:} Compute PSNR and SSIM between reference and enhanced images.\\
+\textbf{Files:} \texttt{Lab 9/metrics.py}.\\
+\textbf{Output:} \texttt{Lab9\_metrics.png} and console PSNR/SSIM.\\
+\textbf{Run:} \texttt{cd "Lab 9"; python metrics.py}.
+
+\subsection{Lab 10 --- Batch Evaluation on Dataset}
+\textbf{Purpose:} Run CLAHE on all images in \texttt{Content/} (and fallback dirs); save to \texttt{outputs/}.\\
+\textbf{Files:} \texttt{Lab 10/batch\_eval.py}, \texttt{Lab 10/Content/}.\\
+\textbf{Output:} \texttt{Lab 10/outputs/<name>\_clahe.png} per input.\\
+\textbf{Run:} \texttt{cd "Lab 10"; python batch\_eval.py}.
+
+\subsection{Lab 11 --- Ablation / Parameter Study}
+\textbf{Purpose:} Vary CLAHE \texttt{clip\_limit} and \texttt{kernel\_size}; report PSNR and SSIM vs reference.\\
+\textbf{Files:} \texttt{Lab 11/ablation.py}.\\
+\textbf{Output:} Console table; \texttt{Lab11\_ablation.txt}.\\
+\textbf{Run:} \texttt{cd "Lab 11"; python ablation.py}.
+
+\subsection{Lab 12 --- Paper Draft}
+\textbf{Purpose:} Short paper: introduction, related work, method (pipeline), experiments, discussion, conclusion.\\
+\textbf{Files:} \texttt{Lab 12/paper\_draft.md}, \texttt{Lab 12/README.md}.\\
+No script; edit \texttt{paper\_draft.md} or build this LaTeX document.
+
+%=============================================================================
+\section{Pipeline Summary}
+%=============================================================================
+
+The research pipeline (Labs 3--12) implements:
+\begin{enumerate}
+  \item Contrast baseline (HE, CLAHE)
+  \item Gamma/log transforms
+  \item Single-scale and multi-scale Retinex
+  \item Color preservation (HSV)
+  \item Denoising + enhancement (bilateral + CLAHE)
+  \item Metrics (PSNR, SSIM)
+  \item Batch evaluation
+  \item Ablation study
+  \item Paper draft
+\end{enumerate}
+
+%=============================================================================
+\section{References}
+%=============================================================================
+
+\begin{itemize}
+  \item F1000Research (2021). Enhancement of digitized X-ray films using Contrast-Limited Adaptive Histogram Equalization (CLAHE).
+  \item MDPI Algorithms (2024). Impact of image enhancement using CLAHE on spine X-ray segmentation with U-Net, Mask R-CNN, and transfer learning.
+  \item He et al., Single image haze removal using dark channel prior (TPAMI 2010) --- related dehazing.
+\end{itemize}
+
+\end{document}

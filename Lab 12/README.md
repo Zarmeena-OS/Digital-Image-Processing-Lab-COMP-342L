@@ -1,7 +1,15 @@
-# Lab 12
+# Lab 12 — Paper draft
 
-## Description
-Lab 12 exercises and implementations for Digital Image Processing.
+Final lab: short paper draft for the research project (Labs 3–12).
 
-## Files
-- Add your lab 12 files here
+## Content
+
+- **`paper_draft.md`** — Introduction, related work, method (pipeline), experiments, discussion, conclusion, references.
+
+## LaTeX
+
+A full problem statement and implementation report (all 12 labs) is in the repo root: **`problem_statement.tex`** (and PDF if built).
+
+## Run
+
+No script to run; edit `paper_draft.md` or build the LaTeX document.

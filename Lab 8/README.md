@@ -1,7 +1,18 @@
-# Lab 8
+# Lab 8 — Denoising + enhancement pipeline
 
-## Description
-Lab 8 exercises and implementations for Digital Image Processing.
+Bilateral filter (edge-preserving) then CLAHE.
+
+## Run
+
+```bash
+cd "Lab 8"
+python denoise_enhance.py
+```
+
+## Output
+
+- **`Lab 8/Lab8_denoise_enhance.png`** — Original | Bilateral denoised | Denoised + CLAHE.
 
 ## Files
-- Add your lab 8 files here
+
+- `denoise_enhance.py` — main script; `Content/` — optional images.

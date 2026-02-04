@@ -1,7 +1,19 @@
-# Lab 11
+# Lab 11 — Ablation / parameter study
 
-## Description
-Lab 11 exercises and implementations for Digital Image Processing.
+Vary CLAHE clip_limit and kernel_size; report PSNR and SSIM vs reference.
+
+## Run
+
+```bash
+cd "Lab 11"
+python ablation.py
+```
+
+## Output
+
+- Console: table of (clip_limit, kernel_size) → PSNR, SSIM.
+- **`Lab 11/Lab11_ablation.txt`** — short summary.
 
 ## Files
-- Add your lab 11 files here
+
+- `ablation.py` — main script; `Content/` — optional images.

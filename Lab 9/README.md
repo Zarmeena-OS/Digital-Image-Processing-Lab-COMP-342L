@@ -1,7 +1,19 @@
-# Lab 9
+# Lab 9 — Objective metrics (PSNR, SSIM)
 
-## Description
-Lab 9 exercises and implementations for Digital Image Processing.
+Compute PSNR and SSIM between reference and enhanced images.
+
+## Run
+
+```bash
+cd "Lab 9"
+python metrics.py
+```
+
+## Output
+
+- Console: PSNR (dB), SSIM.
+- **`Lab 9/Lab9_metrics.png`** — Reference | Enhanced with metrics in title.
 
 ## Files
-- Add your lab 9 files here
+
+- `metrics.py` — main script; `Content/` — optional images.

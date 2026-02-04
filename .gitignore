@@ -26,3 +26,16 @@ Thumbs.db
 *.log
 *.tmp
 Lab 3/Lab3_comparison.png
+Lab 4/Lab4_gamma_log.png
+Lab 5/Lab5_ssr.png
+Lab 6/Lab6_msr.png
+Lab 7/Lab7_color_preserved.png
+Lab 8/Lab8_denoise_enhance.png
+Lab 9/Lab9_metrics.png
+Lab 10/outputs/
+Lab 11/Lab11_ablation.txt
+*.aux
+*.log
+*.out
+*.synctex.gz
+problem_statement.pdf
